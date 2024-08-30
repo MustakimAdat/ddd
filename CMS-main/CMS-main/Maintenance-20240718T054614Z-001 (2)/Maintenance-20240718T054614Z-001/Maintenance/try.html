@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Select Tag Search Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 300px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .select-box {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 5px;
+            position: relative;
+        }
+
+        .tags-input {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px;
+            cursor: text;
+        }
+
+        .tags-input ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tags-input ul li {
+            background-color: #007bff;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tags-input ul li .tag-close-icon {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .tags-input input {
+            border: none;
+            outline: none;
+            flex: 1;
+        }
+
+        .select-dropdown {
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .select-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .select-dropdown ul li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .select-dropdown ul li:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="tags-input">Countries</label>
+        <div class="select-box">
+            <div class="tags-input" id="tags-input">
+                <ul id="tags-list"></ul>
+                <input type="text" id="tags-input-field" placeholder="Search tags...">
+            </div>
+            <div class="select-dropdown">
+                <ul id="dropdown-list">
+                    <!-- Options will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const countries = [
+            'Afghanistan', 'Germany', 'United States', 'India', 'Brazil', 'Canada', 'France', 'Japan', 'China', 'Russia'
+        ];
+
+        const tagsInputField = document.getElementById('tags-input-field');
+        const tagsList = document.getElementById('tags-list');
+        const dropdownList = document.getElementById('dropdown-list');
+        const selectDropdown = document.querySelector('.select-dropdown');
+        let selectedTags = [];
+
+        // Initialize dropdown with countries
+        function initDropdown() {
+            dropdownList.innerHTML = '';
+            countries.forEach(country => {
+                const li = document.createElement('li');
+                li.textContent = country;
+                li.addEventListener('click', () => addTag(country));
+                dropdownList.appendChild(li);
+            });
+        }
+
+        function addTag(tag) {
+            if (!selectedTags.includes(tag)) {
+                selectedTags.push(tag);
+                updateTags();
+            }
+            tagsInputField.value = '';
+            toggleDropdown(false);
+        }
+
+        function removeTag(tag) {
+            selectedTags = selectedTags.filter(t => t !== tag);
+            updateTags();
+        }
+
+        function updateTags() {
+            tagsList.innerHTML = '';
+            selectedTags.forEach(tag => {
+                const li = document.createElement('li');
+                li.textContent = tag;
+                const closeIcon = document.createElement('span');
+                closeIcon.textContent = 'x';
+                closeIcon.classList.add('tag-close-icon');
+                closeIcon.addEventListener('click', () => removeTag(tag));
+                li.appendChild(closeIcon);
+                tagsList.appendChild(li);
+            });
+        }
+
+        function toggleDropdown(show) {
+            selectDropdown.style.display = show ? 'block' : 'none';
+        }
+
+        tagsInputField.addEventListener('focus', () => toggleDropdown(true));
+        tagsInputField.addEventListener('blur', () => setTimeout(() => toggleDropdown(false), 200));
+
+        tagsInputField.addEventListener('input', () => {
+            const searchTerm = tagsInputField.value.toLowerCase();
+            const filteredCountries = countries.filter(country => country.toLowerCase().includes(searchTerm));
+            dropdownList.innerHTML = '';
+            filteredCountries.forEach(country => {
+                const li = document.createElement('li');
+                li.textContent = country;
+                li.addEventListener('click', () => addTag(country));
+                dropdownList.appendChild(li);
+            });
+        });
+
+        initDropdown();
+        updateTags();
+    </script>
+</body>
+</html>

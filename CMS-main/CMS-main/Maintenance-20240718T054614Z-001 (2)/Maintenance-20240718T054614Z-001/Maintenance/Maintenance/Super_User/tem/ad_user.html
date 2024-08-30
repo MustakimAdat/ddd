@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Foldit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../static/add_user.css">
+
+	<title>Add User</title>
+
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class="fa-solid fa-layer-group"></i>
+			<span class="text">Admin</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class="fa-solid fa-border-all"></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa-solid fa-computer"></i>
+					<span class="text">Manage-User</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class="fa-solid fa-gear"></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" value="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<!--<label for="switch-mode" class="switch-mode"></label>-->
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Add User</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="index.html">Home</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="index.html">Add user</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+				<i class="fa-solid fa-download"></i></i>
+					<span class="text">Download PDF</span>
+				</a>
+			</div>
+
+
+
+			<div class="table-data">
+				<div class="order">
+                <div id="form"> 
+					  
+					<div class="first-row">
+
+						<div class="location">
+							<div class="title">First Name : </div>
+							<input class=input-text type="text">
+						</div>
+
+						<div class="location">
+							<div class="title">Last Name : </div>
+							<input class=input-text type="text">
+						</div>
+
+						<div class="location">
+							<div class="title">E-mail : </div>
+							<input class=input-text type="text">
+						</div>
+
+                        <div class="dropdown">
+                            <div class="title">Department</div>
+                            <div class="input-box"></div>
+                            <div class="list">   
+								<input type="radio" name="drop1" id="id11" class="radio" />
+								<label for="id11" onclick="changeOptions('dropdown2', ['Software', 'Hardware', 'Network', 'Printer', 'Projector', 'Wifi','Other'])">IT</label>
+						
+								<input type="radio" name="drop1" id="id12" class="radio" />
+								<label for="id12" onclick="changeOptions('dropdown2', ['New Project', 'Instruments', 'Electrical Assets', 'Other'])">Electrical</label>
+						
+								<input type="radio" name="drop1" id="id13" class="radio" />
+								<label for="id13" onclick="changeOptions('dropdown2', ['New Project', 'Instruments', 'Electrical Assets'])">Mechanical</label> 
+                        	</div>
+                        </div>
+                      
+                        <div class="dropdown" id="dropdown2">
+                        	<div class="title">User-Designation</div>
+                            	<div class="input-box"></div>
+                            		<div class="list">
+
+										<div class="search-box">
+											<input type="search" name="" id="search2" value="Search Options" onkeyup="search(this, 'dropdown2')"/>
+										</div>
+
+										<input type="radio" name="drop2" id="id21" class="radio" />
+										<label for="id21" class="nested-dropdown">Software</label>
+								
+										<input type="radio" name="drop2" id="id22" class="radio" />
+										<label for="id22" class="nested-dropdown">Hardware</label>
+								
+										<input type="radio" name="drop2" id="id23" class="radio" />
+										<label for="id23" class="nested-dropdown">Network</label>
+								
+										<input type="radio" name="drop2" id="id24" class="radio" />
+										<label for="id24" class="nested-dropdown">Other</label>
+                       
+                       			<div id="ITProblemType" style="display:none;">
+									<label><input type="radio" name="problem_type" value="Hardware" class="radio"> Hardware</label>
+									<label><input type="radio" name="problem_type" value="Software"> Software</label>
+									<label><input type="radio" name="problem_type" value="Network"> Network</label>
+									<label><input type="radio" name="problem_type" value="Printer"> Printer</label>
+									<label><input type="radio" name="problem_type" value="Projector"> Projector</label>
+									<label><input type="radio" name="problem_type" value="Wifi"> Wifi</label>
+									<label><input type="radio" name="problem_type" value="Other"> Other</label>
+                        		</div>
+                            </div>
+                          </div>
+						  
+        				
+						
+						<select name="countries" id="countries" multiple> 
+							<option value="1">Afghanistan</option>
+							<option value="2">Australia</option>
+							<option value="3">Germany</option>
+							<option value="4">Canada</option>
+							<option value="5">Russia</option>
+						</select>
+
+						
+	
+					<button class="btn" id="submit" type="submit" onclick="openPopup()">Submit</button>
+					<button class="btn" id="submit" type="submit" onclick="adduser()">Add User</button>
+						
+					<div class="pop-up" id="popup">
+						<img src="404-tick.png" alt="">
+						<h2>Thank You!</h2>
+						<p>Your Application has been succefully submited. Thank!</p>
+						<button type="button" onclick="closePopup()">OK</button>
+					</div>
+				</div>	
+			</div>				
+		</div>
+	
+	<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+	<script src="/static/add_user.js"></script>
+	<script>
+		new MultiSelectTag('countries')  // id
+	</script>
+</body>
+</html>
+
+
+
+
+
+<!-- 
+First anme ,last nmae ,email,
+dropdown -- department ,designation
+role -->
